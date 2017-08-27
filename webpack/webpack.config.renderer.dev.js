@@ -2,11 +2,11 @@ import path from 'path';
 import fs from 'fs';
 import webpack from 'webpack'
 import merge from 'webpack-merge';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import baseConfig from './webpack.config.base';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import {spawn, execSync } from 'child_process';
 import chalk from 'chalk';
-
 
 const port = process.env.PORT || 9600;
 const publicPath = `http://localhost:${port}/dist`;
@@ -26,11 +26,15 @@ export default merge.smart(baseConfig, {
   entry: [
     'react-hot-loader/patch',
     `webpack-dev-server/client?http://localhost:${port}/`,
-    path.join(__dirname, '../app/main.dev.js'),
+    path.join(__dirname, '../app/app.js'),
   ],
   output: {
-    publicPath: `http://localhost:${port}/dist/`
+    // publicPath: `http://localhost:${port}/dist/`,
+    path: path.join(__dirname, "..", "lib"),
+    publicPath: "/",
+    filename: "bundle.js"
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -169,6 +173,12 @@ export default merge.smart(baseConfig, {
       manifest: require(manifest),
       sourceType: 'var',
     }),
+    /*
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: `http://localhost:${port}/dist/app.js`
+    }),
+    */
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
