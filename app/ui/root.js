@@ -6,7 +6,7 @@ export class Root extends Component {
   }
 
   render() {
-    return <div><p>Hello</p> </div>
+    return <div><p>Hello Test 2</p> </div>
 
   }
 }

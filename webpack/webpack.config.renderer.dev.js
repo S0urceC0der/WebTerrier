@@ -29,7 +29,7 @@ export default merge.smart(baseConfig, {
     path.join(__dirname, '../app/app.js'),
   ],
   output: {
-    // publicPath: `http://localhost:${port}/dist/`,
+    publicPath: `http://localhost:${port}/dist/`,
     path: path.join(__dirname, "..", "lib"),
     publicPath: "/",
     filename: "bundle.js"
@@ -205,7 +205,7 @@ export default merge.smart(baseConfig, {
     lazy: false,
     hot: true,
     headers: {'Access-Control-Allow_origin': '*'},
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.join(__dirname, '../app'),
     watchOptions: {
      aggregateTimeout: 300,
      ignored: /node_modules/,
