@@ -26,12 +26,12 @@ export default merge.smart(baseConfig, {
   entry: [
     'react-hot-loader/patch',
     `webpack-dev-server/client?http://localhost:${port}/`,
+    'webpack/hot/only-dev-server',
     path.join(__dirname, '../app/app.js'),
   ],
   output: {
     publicPath: `http://localhost:${port}/dist/`,
     path: path.join(__dirname, "..", "lib"),
-    publicPath: "/",
     filename: "bundle.js"
   },
   devtool: 'source-map',
